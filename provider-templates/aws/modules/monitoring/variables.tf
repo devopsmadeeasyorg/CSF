@@ -1,0 +1,3 @@
+variable "lambdaarn" {
+    type = string
+}

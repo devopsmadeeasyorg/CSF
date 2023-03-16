@@ -1,0 +1,6 @@
+{ 
+    "myproject" : "josephproject",
+    "myregion" : "us-west2",
+    "mysshuser":"gcp-user",
+    "mykey" : "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDYZi3tC+HbVFVuaxLtA92jAsAqtnDUKrrDNUdFY6sSx1ayaCyJeTW+GKvISl+fW06KqfvDw0hNbb0+vex79ghwEfBVfUnBTgGZWcCWMY3gTK1JoPb7ci2zwWUNrw6sFKVHw5UADLGc8dX8S+RQo3BBRenfti2mHjR1LRWY9PJGbjlkR+enM22FowN7fG6SLL+FK7iWYBx0tNWfnrPq6Huh/U74eSPD7kYXtTXlJyrgocqeg9V4BxCeH6yzOmvTEf9J11CQTOR+iKkEQB6n1YS/aaMdBlChgD34O001eEsKe3pSKvLLuqsqXwOpRA2pL8rM/Tx6pCdJE6gRal++IcKqbyOablm7/0110XomEWtqaLJgXy8FbYX3XPhYvX8dB5V+6v0tUsjaj/DTGETbzwRuYbxsh5+Uj036QNzw1VO3x00K9ch2IppVCY9/cK909EgwMrO35dR/hrc9dZztEYnioqlp7FKrDYOX+usbIkuxe4BcJdTq8O4zHf1LgFhZnn0= jyoth@jojo"
+}
