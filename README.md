@@ -5,9 +5,11 @@ This project is intended to provision infrastructure on AWS, Azure and GCP.
 Pre-Requisites
 ============================
 # Setup environment on Windows Local machine
-->Download terraform(https://www.terraform.io/downloads) -> unzip file -> terraform.exe
+Step 1: Download terraform
+https://www.terraform.io/downloads) -> unzip file -> terraform.exe
 
-->Edit the system environment variales -> System variables -> click on Path -> enter terraform.exe file path -> New -> Ok 
+Step 2: Edit the system environment variales
+System variables -> click on Path -> enter terraform.exe file path -> New -> Ok 
 
 AWS
 ======
@@ -51,49 +53,44 @@ INSERT INTO student VALUES (1,'krishna','maram','krishnamaram2@gmail.com');
 
 Azure
 =======
+Pre-Requisites
+=====================
+Step 1:Service principal creation to authenticate Azure from Terraform client
+
+Azure active directory => App registrations => New registration -> Name : <<mysp>> -> Register -> Certificates & secrets -> Client secrets -> New client secret -> Add -> copy client secret value
+
+Step 2: Permission for mysp to create resource group
+Subscription => IAM => Add -> add role assignment -> Role => Privileged administrator roles=> contributor -> members -> select members => select: <<mysp>> => click on Review + assign
+
+$Env:ARM_TENANT_ID=""
+
+$Env:ARM_SUBSCRIPTION_ID=""
+
+$Env:ARM_CLIENT_ID=""
+
+$Env:ARM_CLIENT_SECRET=""
+
 Execution Flow
 =====================
-Step 1: Authentication to Azure : Service principal creation
-
-App registration :Azure active directory => App registrations => New registration -> Name : mysp -> Register -> Certificates & secrets -> Client secrets -> New client secret -> Add -> copy client secret
-
-Permission for mysp to create resource group :Subscription => IAM => Add -> add role assignment -> Role : contributor -> members -> select members => select: mysp => click on Review + assign
-
-$vi azure_export.sh
-
-export ARM_TENANT_ID=""
-
-export ARM_SUBSCRIPTION_ID=""
-
-export ARM_CLIENT_ID=""
-
-export ARM_CLIENT_SECRET=""
-
-$source azure_export.sh
-
 
 step 1: clone repo
 
-$git clone https://github.com/csp2022/CSP.git -b master
+$git clone https://github.com/fullstack2025/CSF.git
 
-Step 2: move to directory
+Step 2: Modify variables
+>ssh-keygen
 
-cd CSP/provider-templates/azure
+vi CSF/cluster-templates/azure_dev_cluster.json
+
+Step 3: move to azure directory
+
+cd CSF/provider-templates/azure
 
 $terraform init .
 
 $terraform validate 
 
-$terraform apply -var-file azure_dev.json
-
-mysql --host=mysqldbsrinivas.mysql.database.azure.com --user=srinivas@mysqldbsrinivas -p
-
-create database cloudstones
-
-CREATE TABLE student ( id int NOT NULL AUTO_INCREMENT, first_name varchar(255) DEFAULT NULL, last_name varchar(255) DEFAULT NULL, email_id varchar(255) DEFAULT NULL, PRIMARY KEY (id) ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-INSERT INTO student VALUES (1,'krishna','maram','krishnamaram2@gmail.com');
-
+$terraform apply -var-file ../../cluster-templates/azure_dev_cluster.json
 
 GCP
 =======
