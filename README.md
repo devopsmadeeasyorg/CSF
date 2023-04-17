@@ -59,7 +59,8 @@ Step 1:Service principal creation to authenticate Azure from Terraform client
 
 Azure active directory => App registrations => New registration -> Name : <<mysp>> -> Register -> Certificates & secrets -> Client secrets -> New client secret -> Add -> copy client secret value
 
-Step 2: Permission for mysp to create resource group
+Step 2: Permission for service principla:<<mysp>> to create resource group
+
 Subscription => IAM => Add -> add role assignment -> Role => Privileged administrator roles=> contributor -> members -> select members => select: <<mysp>> => click on Review + assign
 
 $Env:ARM_TENANT_ID=""
@@ -72,7 +73,6 @@ $Env:ARM_CLIENT_SECRET=""
 
 Execution Flow
 =====================
-
 step 1: clone repo
 
 $git clone https://github.com/fullstack2025/CSF.git
