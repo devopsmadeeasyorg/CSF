@@ -60,7 +60,51 @@ resource "azurerm_network_interface_security_group_association" "example" {
 }
 
 resource "azurerm_linux_virtual_machine" "myvm" {
-  name                  = "myvm"
+  name                  = "haproxy"
+  location              = azurerm_resource_group.myrg.location
+  resource_group_name   = azurerm_resource_group.myrg.name
+  network_interface_ids = [azurerm_network_interface.mynic.id]
+  size                = "Standard_F2"
+  admin_username      = "adminuser"
+  
+
+  source_image_reference {
+    publisher = "Canonical"
+    offer     = "UbuntuServer"
+    sku       = "16.04-LTS"
+    version   = "latest"
+  }
+
+  admin_ssh_key {
+    username   = "adminuser"
+    public_key = "${var.mykey}"
+  }
+
+  os_disk {
+    caching              = "ReadWrite"
+    storage_account_type = "Standard_LRS"
+  }
+
+  /* connection {
+        host = self.public_ip_address
+        user = "adminuser"
+        type = "ssh"
+        private_key = "${file("~/Downloads/mykp.pem")}"
+        timeout = "4m"
+        agent = false
+    }
+
+  provisioner "remote-exec" {
+        inline = [
+      "sudo apt update",
+
+      "sudo apt install docker.io -y"
+        ]
+    } */
+}
+
+resource "azurerm_linux_virtual_machine" "myvm" {
+  name                  = "webapp"
   location              = azurerm_resource_group.myrg.location
   resource_group_name   = azurerm_resource_group.myrg.name
   network_interface_ids = [azurerm_network_interface.mynic.id]
