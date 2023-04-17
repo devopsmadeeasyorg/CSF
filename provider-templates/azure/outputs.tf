@@ -1,3 +1,3 @@
 output "webserver_public_ip" {
-  value = azurerm_linux_virtual_machine.myvm.public_ip_address
+  value = azurerm_linux_virtual_machine.haproxy.public_ip_address
 }
