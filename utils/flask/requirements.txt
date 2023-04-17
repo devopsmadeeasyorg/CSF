@@ -1,4 +1,0 @@
-Flask
-mysqlclient
-Flask-MySQLdb
-gunicorn

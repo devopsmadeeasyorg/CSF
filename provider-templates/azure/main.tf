@@ -85,7 +85,7 @@ resource "azurerm_linux_virtual_machine" "myvm" {
     storage_account_type = "Standard_LRS"
   }
 
-  connection {
+  /* connection {
         host = self.public_ip_address
         user = "adminuser"
         type = "ssh"
@@ -98,17 +98,9 @@ resource "azurerm_linux_virtual_machine" "myvm" {
         inline = [
       "sudo apt update",
 
-      "sudo apt install docker.io -y",
-
-      "sudo usermod -aG docker $USER && sudo chmod 777 /var/run/docker.sock",
-      
-      "sudo git clone https://github.com/csp2022/CSP.git && cd CSP/utils/flask",
-
-      "sudo docker image build -t flask .",
-
-      "sudo docker run -d --name flask -p 5001:5001 flask"
+      "sudo apt install docker.io -y"
         ]
-    }
+    } */
 }
 
 resource "azurerm_public_ip" "example" {
@@ -151,36 +143,4 @@ resource "azurerm_lb_backend_address_pool_address" "example" {
   backend_address_pool_id = azurerm_lb_backend_address_pool.example.id
   virtual_network_id      = azurerm_virtual_network.myvnet.id
   ip_address              = azurerm_linux_virtual_machine.myvm.private_ip_address
-}
-
-
-
-
-resource "azurerm_mysql_server" "example" {
-  name                = "mysqldbsrinivas"
-  resource_group_name = azurerm_resource_group.myrg.name
-  location            = azurerm_resource_group.myrg.location
-
-  administrator_login          = "srinivas"
-  administrator_login_password = "KrishnaJyothi_123"
-
-  sku_name   = "B_Gen5_2"
-  storage_mb = 5120
-  version    = "5.7"
-
-  auto_grow_enabled                 = true
-  backup_retention_days             = 7
-  geo_redundant_backup_enabled      = false
-  infrastructure_encryption_enabled = false
-  public_network_access_enabled     = true
-  ssl_enforcement_enabled           = false
-  ssl_minimal_tls_version_enforced  = "TLSEnforcementDisabled"
-}
-
-resource "azurerm_mysql_firewall_rule" "mysqldfwrule" {
-  name                = "office"
-  resource_group_name = azurerm_resource_group.myrg.name
-  server_name         = azurerm_mysql_server.example.name
-  start_ip_address    = "0.0.0.0"
-  end_ip_address      = "0.0.0.0"
 }

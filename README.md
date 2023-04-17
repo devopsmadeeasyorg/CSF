@@ -4,8 +4,8 @@ This project is intended to provision infrastructure on AWS, Azure and GCP.
 
 Pre-Requisites
 ============================
-# Windows Local sandbox
-Download terraform(https://www.terraform.io/downloads) -> unzip file -> terraform.exe
+# Setup environment on Windows Local machine
+->Download terraform(https://www.terraform.io/downloads) -> unzip file -> terraform.exe
 
 ->Edit the system environment variales -> System variables -> click on Path -> enter terraform.exe file path -> New -> Ok 
 
