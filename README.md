@@ -92,6 +92,34 @@ $terraform validate
 
 $terraform apply -var-file ../../cluster-templates/azure_dev_cluster.json
 
+Step a: Connect to the above launched webserver instance
+
+$ssh -i <> centos@<<PUBLIC_IP>>
+
+Step b: Install pip package manager
+
+$sudo yum install python3-pip -y
+
+Step c: Install django package $sudo pip3 install django
+
+$sudo vi /usr/local/lib64/python3.6/site-packages/django/db/backends/sqlite3/base.py (line 67 replace > with ==)
+
+Step d: Install gunicorn server
+
+$sudo pip3 install gunicorn
+
+$sudo yum install git
+
+$git clone https://github.com/devops2023q2/webapp.git
+ 
+$cd webapp && pip3 install -r requirements.txt
+
+$python3 manage.py makemigrations
+
+$python3 manage.py migrate
+
+$gunicorn main.wsgi --bind 0.0.0.0:8000
+
 GCP
 =======
 Note: Note: enable in GCP : Cloud SQL Admin API
