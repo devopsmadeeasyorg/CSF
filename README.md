@@ -136,7 +136,8 @@ in bash: $export GOOGLE_APPLICATION_CREDENTIALS="~/Downloads/gcp_cred.json"
 
 Step 2: Create project(till now I am unable to create project using terraform due to permission issue)
 
-Step 3: Note: enable in GCP : Cloud SQL Admin API
+Step 3: Permission to authenticate GCP APIs
+ APIs & Services: enabled APIs & Services => click on ENABLE APIS AND SERVICES => Compute Engine API and Cloud SQL Admin API
 
 Execution Flow
 =====================
