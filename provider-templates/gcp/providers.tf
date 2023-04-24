@@ -14,3 +14,8 @@ provider "google" {
   region = "${var.myregion}"
 }
 
+#resource "google_project" "my_project" {
+#  name       = "myroject"
+#  project_id = "myprojectid"
+#}
+
