@@ -124,10 +124,9 @@ $gunicorn main.wsgi --bind 0.0.0.0:8000
 
 GCP
 =======
-Note: Note: enable in GCP : Cloud SQL Admin API
-Execution Flow
+Pre-Requisites
 =====================
-Step 1: Authentication to GCP : service account keys for authentication
+Step 1: Authentication: service account creation
 
 IAM -> Service accounts -> create service account -> service account name : mysa -> click on CREATE AND CONTINUE ->  select a role -> Basic : owner -> continue -> done -> click on service account -> keys -> add key 
 
@@ -135,13 +134,18 @@ $export GOOGLE_APPLICATION_CREDENTIALS="~/Downloads/gcp-cred.json"
 
 Step 2: Create project(till now I am unable to create project using terraform due to permission issue)
 
+Step 3: Note: enable in GCP : Cloud SQL Admin API
+
+Execution Flow
+=====================
+
 step 1: clone repo
 
-$git clone https://github.com/csp2022/CSP.git -b master
+$$git clone https://github.com/fullstack2025/CSF.git
 
 Step 2: move to directory
 
-cd CSP/provider-templates/gcp
+cd CSF/provider-templates/gcp
 
 $terraform init 
 
