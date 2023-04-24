@@ -130,7 +130,9 @@ Step 1: Authentication: service account creation
 
 IAM -> Service accounts -> create service account -> service account name : mysa -> click on CREATE AND CONTINUE ->  select a role -> Basic : owner -> continue -> done -> click on service account -> keys -> add key 
 
-$export GOOGLE_APPLICATION_CREDENTIALS="~/Downloads/gcp-cred.json"
+in Powershell: $Env:GOOGLE_APPLICATION_CREDENTIALS="~/Downloads/gcp_cred.json"
+
+in bash: $export GOOGLE_APPLICATION_CREDENTIALS="~/Downloads/gcp_cred.json"
 
 Step 2: Create project(till now I am unable to create project using terraform due to permission issue)
 
@@ -141,17 +143,19 @@ Execution Flow
 
 step 1: clone repo
 
-$$git clone https://github.com/fullstack2025/CSF.git
+$git clone https://github.com/fullstack2025/CSF.git
 
 Step 2: move to directory
 
 cd CSF/provider-templates/gcp
 
+../../clutser-templates/gcp_dev_cluster.json
+
 $terraform init 
 
 $terraform validate 
 
-$terraform apply -var-file ../../clutser-templates/gcp_dev.json
+$terraform apply -var-file ..\..\clutser-templates/gcp_dev_cluster.json
 
 login to app server instance -> flask container -> update dp ip in vi index.py file
 
