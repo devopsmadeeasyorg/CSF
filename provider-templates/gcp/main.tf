@@ -76,7 +76,7 @@ metadata = {
       type        = "ssh"
       user        = "gcp-user"
       timeout     = "500s"
-      private_key = file("~/Downloads/mykp.pem")
+      private_key = file("~/.ssh/id_rsa")
     }
     inline = [
       "sudo apt update",
