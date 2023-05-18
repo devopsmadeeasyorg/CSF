@@ -1,4 +1,5 @@
 { 
+    "cloud_provider": "aws",
     "myregion" : "us-east-1",
     "mycidr" : "10.0.0.0/16",
     "myami" : "ami-002070d43b0a4f171", 

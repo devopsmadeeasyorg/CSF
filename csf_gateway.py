@@ -15,7 +15,8 @@ from optparse import OptionParser
 utils_dir = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(utils_dir, 'utils'))
 # from logger import CspLogger as logger
-from utils import cluster_db_handler
+# from utils import cluster_db_handler
+from terraform_operations import provision_cluster, deprovision_cluster
 
 def command_options():
     parser = OptionParser(usage=("valid actions"),version="0.1")
@@ -23,18 +24,18 @@ def command_options():
     parser.add_option("--actions",action="store",dest="actions")
     return parser
 
-def provision_cluster(cluster_data):
-    print("Started provisioning cluster")
+# def provision_cluster(cluster_data):
+#     print("Started provisioning cluster")
     
-    cluster_db_handler.insert_cluster_info(cluster_data)
-    cluster_db_handler.update_cluster_status_before_provision(cluster_data)
-    cluster_db_handler.update_cluster_status_after_provision(cluster_data)
-    print("Successfully provisioned cluster")
-def deprovision_cluster(cluster_data):
-    print("Started deprovisioning cluster")
-    cluster_db_handler.update_cluster_status_before_deprovision(cluster_data)
-    cluster_db_handler.update_cluster_status_after_deprovision(cluster_data)
-    print("Successfully deprovisioned cluster")
+#     cluster_db_handler.insert_cluster_info(cluster_data)
+#     cluster_db_handler.update_cluster_status_before_provision(cluster_data)
+#     cluster_db_handler.update_cluster_status_after_provision(cluster_data)
+#     print("Successfully provisioned cluster")
+# def deprovision_cluster(cluster_data):
+#     print("Started deprovisioning cluster")
+#     cluster_db_handler.update_cluster_status_before_deprovision(cluster_data)
+#     cluster_db_handler.update_cluster_status_after_deprovision(cluster_data)
+#     print("Successfully deprovisioned cluster")
 
 if __name__ == "__main__":
     args_list = sys.argv
@@ -49,7 +50,7 @@ if __name__ == "__main__":
         provision_cluster(cluster_data)
     elif "deprovision" in options_list:
         deprovision_cluster(cluster_data)
-    cluster_db_handler.retrieve_clusters_info()
+    # cluster_db_handler.retrieve_clusters_info()
 
 
 
