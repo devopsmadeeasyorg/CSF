@@ -31,6 +31,8 @@ $ssh-keygen
 
 $vi ../../clutser-templates/aws_dev.json
 
+Change db ip: https://github.com/csp2022/CSP/blob/master/utils/flask/index.py
+
 $terraform init 
 
 $terraform validate 
