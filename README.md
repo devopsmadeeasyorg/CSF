@@ -4,12 +4,11 @@ This project is intended to provision infrastructure on AWS, Azure and GCP.
 
 Pre-Requisites
 ============================
-# Setup environment on Windows Local machine
-Step 1: Download terraform utility
+* Step 1: Download terraform utility
 ```
 https://www.terraform.io/downloads) -> unzip file -> terraform.exe
 ```
-Step 2: Edit the system environment variables
+* Step 2: Edit the system environment variables
 ```
 System variables -> click on Path -> enter terraform.exe file path -> New -> Ok 
 ```
