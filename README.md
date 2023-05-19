@@ -45,9 +45,9 @@ python3 csf_gateway.py --cluster_data cluster-templates\aws_dev_cluster.json --a
 
 login to bastionhost
 
-eval ssh-agent
+eval `ssh-agent`
 
-ssh-add -k .pem
+ssh-add -k ~/.ssh/id_rsa
 
 ssh -A centos@publicip
 
