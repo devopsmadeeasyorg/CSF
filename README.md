@@ -16,32 +16,26 @@ AWS
 ======
 Execution Flow
 =====================
-Step 1: Authentication to AWS 
-
-$Env:AWS_ACCESS_KEY_ID=""
-
-$Env:AWS_SECRET_ACCESS_KEY=""
-
-Step 2: clone repo
-
+* Step 1: Authentication to AWS 
+```
+$export AWS_ACCESS_KEY_ID=""
+$export AWS_SECRET_ACCESS_KEY=""
+```
+* Step 2: clone repo
+```
 $git clone https://github.com/fullstack2025/CSF.git && cd CSF
-
+```
+* Step 3: required changes in aws_dev_cluster.json
+```
+$vi ../../clutser-templates/aws_dev_cluster.json
 $ssh-keygen
-
-$vi ../../clutser-templates/aws_dev.json
-
 Change db ip: https://github.com/csp2022/CSP/blob/master/utils/flask/index.py or login to app server instance -> flask container -> update dp ip in vi index.py file
 
-$terraform init 
-
-$terraform validate 
-
-$terraform apply -var-file ../../clutser-templates/aws_dev.json
-
+* Step 4: provision infra
 ```
 python3 csf_gateway.py --cluster_data cluster-templates\aws_dev_cluster.json --action provision
 ```
-
+* Step 5: Post provision steps
 login to bastionhost
 
 eval `ssh-agent`
