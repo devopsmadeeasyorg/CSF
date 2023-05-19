@@ -51,9 +51,9 @@ CREATE TABLE student ( id int NOT NULL AUTO_INCREMENT, first_name varchar(255) D
 
 INSERT INTO student VALUES (1,'krishna','maram','krishnamaram2@gmail.com');
 
-
+'''
 python3 .\csf_gateway.py --cluster_data .\cluster-templates\aws_dev_cluster.json --action provision
-
+'''
 Azure
 =======
 Pre-Requisites
