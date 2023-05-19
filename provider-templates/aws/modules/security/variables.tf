@@ -13,3 +13,7 @@ type = string
 variable "mypublickey"{
  type = string 
 }
+
+ variable "access_network_list"{
+    type= string
+ }

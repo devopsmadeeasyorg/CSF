@@ -9,14 +9,14 @@ resource "aws_security_group" "bastion-sg" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["183.83.37.44/32"]
+    cidr_blocks = [var.access_network_list]
   }
   ingress {
     description = "TLS from VPC"
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
-    cidr_blocks = ["183.83.37.44/32"]
+    cidr_blocks = ["${var.access_network_list}"]
   }
   egress {
     from_port   = 0

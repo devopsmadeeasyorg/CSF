@@ -11,6 +11,7 @@ myvpc = "${module.networking.myvpc}"
 lb-subnet1 = "${module.networking.lb-subnet1}"
 webapp-subnet1 = "${module.networking.webapp-subnet1}"
 mypublickey = "${var.mypublickey}"
+access_network_list =  "${var.access_network_list}"
 }
 
 module "cloudinit"{
