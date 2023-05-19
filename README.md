@@ -147,27 +147,34 @@ Step 3: Permission to authenticate GCP APIs
 
 Execution Flow
 =====================
-
-step 1: clone repo
-
-$git clone https://github.com/fullstack2025/CSF.git
-
-Step 2: move to directory
-
-cd CSF/provider-templates/gcp
-
-../../clutser-templates/gcp_dev_cluster.json
-
-$terraform init 
-
-$terraform validate 
-
-$terraform apply -var-file ..\..\clutser-templates/gcp_dev_cluster.json
-
-login to app server instance -> flask container -> update dp ip in vi index.py file
-
+ * Step 1: Authentication to GCP
+ ```
+ export GOOGLE_APPLICATION_CREDENTIALS="~/Downloads/gcp_cred.json"
+ ```
+* Step 2: clone repo
+```
+git clone https://github.com/fullstack2025/CSF.git && cd CSF
+```
+* Step 3: required changes in gcp_dev_cluster.json
+```
+vi clutser-templates/gcp_dev_cluster.json
+ssh-keygen
+cat ~/.ssh/id_rsa.pub
+optional: Change db ip: https://github.com/csp2022/CSP/blob/master/utils/flask/index.py or login to app server instance -> flask container -> update dp ip in vi index.py file
+```
+* Step 4: provision infra
+```
+python3 csf_gateway.py --cluster_data cluster-templates/aws_dev_cluster.json --action provision
+```
+```
+python3 csf_gateway.py --cluster_data cluster-templates/aws_dev_cluster.json --action deprovision
+```
+* Step 5: Post provision steps
+ ```
+=>login to app server instance -> flask container -> update dp ip in vi index.py file
 $mysql -h IP -u USERNAME -p DBNAME
-
+ 
 mysql>CREATE TABLE student ( id int NOT NULL AUTO_INCREMENT, first_name varchar(255) DEFAULT NULL, last_name varchar(255) DEFAULT NULL, email_id varchar(255) DEFAULT NULL, PRIMARY KEY (id) ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
+ 
 mysql>INSERT INTO student VALUES (1,'krishna','maram','krishnamaram2@gmail.com');
+```
