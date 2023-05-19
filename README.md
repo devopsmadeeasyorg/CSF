@@ -27,9 +27,10 @@ git clone https://github.com/fullstack2025/CSF.git && cd CSF
 ```
 * Step 3: required changes in aws_dev_cluster.json
 ```
-vi ../../clutser-templates/aws_dev_cluster.json
+vi clutser-templates/aws_dev_cluster.json
 ssh-keygen
-Change db ip: https://github.com/csp2022/CSP/blob/master/utils/flask/index.py or login to app server instance -> flask container -> update dp ip in vi index.py file
+cat ~/.ssh/id_rsa.pub
+optional: Change db ip: https://github.com/csp2022/CSP/blob/master/utils/flask/index.py or login to app server instance -> flask container -> update dp ip in vi index.py file
 
 * Step 4: provision infra
 ```
