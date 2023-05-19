@@ -31,13 +31,17 @@ $ssh-keygen
 
 $vi ../../clutser-templates/aws_dev.json
 
-Change db ip: https://github.com/csp2022/CSP/blob/master/utils/flask/index.py
+Change db ip: https://github.com/csp2022/CSP/blob/master/utils/flask/index.py or login to app server instance -> flask container -> update dp ip in vi index.py file
 
 $terraform init 
 
 $terraform validate 
 
 $terraform apply -var-file ../../clutser-templates/aws_dev.json
+
+```
+python3 csf_gateway.py --cluster_data cluster-templates\aws_dev_cluster.json --action provision
+```
 
 login to bastionhost
 
@@ -49,15 +53,13 @@ ssh -A centos@publicip
 
 sudo yum install mysql -y
 
-mysql -h mysqldb.c07sujkvnfl6.us-east-1.rds.amazonaws.com -P 3306 -u cloud -p cloudstones
+mysql -h mysqldb9.ctamf3ldkqod.us-east-1.rds.amazonaws.com -P 3306 -u cloud -p cloudstones
 
 CREATE TABLE student ( id int NOT NULL AUTO_INCREMENT, first_name varchar(255) DEFAULT NULL, last_name varchar(255) DEFAULT NULL, email_id varchar(255) DEFAULT NULL, PRIMARY KEY (id) ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO student VALUES (1,'krishna','maram','krishnamaram2@gmail.com');
 
-```
-python3 csf_gateway.py --cluster_data cluster-templates\aws_dev_cluster.json --action provision
-```
+
 Azure
 =======
 Pre-Requisites
