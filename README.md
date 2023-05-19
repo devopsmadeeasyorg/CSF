@@ -34,7 +34,7 @@ optional: Change db ip: https://github.com/csp2022/CSP/blob/master/utils/flask/i
 ```
 * Step 4: provision infra
 ```
-python3 csf_gateway.py --cluster_data cluster-templates\aws_dev_cluster.json --action provision
+python3 csf_gateway.py --cluster_data cluster-templates/aws_dev_cluster.json --action provision
 ```
 * Step 5: Post provision steps
 login to bastionhost
