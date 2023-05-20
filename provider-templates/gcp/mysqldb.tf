@@ -1,4 +1,4 @@
-/* resource "google_sql_database_instance" "master" {
+resource "google_sql_database_instance" "master" {
 deletion_protection = false
 name = "mydb4"
 database_version = "MYSQL_5_7"
@@ -28,4 +28,4 @@ name = "cloud"
 instance = "${google_sql_database_instance.master.name}"
 host = "%"
 password = "Stones_123"
-} */
+} 
