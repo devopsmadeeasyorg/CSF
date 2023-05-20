@@ -26,7 +26,7 @@ metadata = {
   ssh-keys ="${var.mysshuser}:${var.mykey}"
 }
 
- provisioner "remote-exec" {
+ /*provisioner "remote-exec" {
     connection {
       host        = google_compute_address.static[count.index].address
       type        = "ssh"
@@ -34,7 +34,7 @@ metadata = {
       timeout     = "500s"
       private_key = file("~/.ssh/id_rsa")
     }
-    /* inline = [
+     inline = [
       "sudo apt update",
 
       "sudo apt install docker.io -y",
@@ -46,8 +46,8 @@ metadata = {
       "sudo docker image build -t flask .",
 
       "sudo docker run -d --name flask -p 5001:5001 flask"
-        ] */
+        ] 
         inline =["sudo yum install git -y"]
-  }
+  }*/
 }
 
