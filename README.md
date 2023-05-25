@@ -106,24 +106,19 @@ GCP
 =======
 Pre-Requisites
 =====================
-Step 1: Authentication: service account creation
-
-IAM -> Service accounts -> create service account -> service account name : mysa -> click on CREATE AND CONTINUE ->  select a role -> Basic : owner -> continue -> done -> click on service account -> keys -> add key 
-
-in Powershell: $Env:GOOGLE_APPLICATION_CREDENTIALS="~/Downloads/gcp_cred.json"
-
-in bash: $export GOOGLE_APPLICATION_CREDENTIALS="~/Downloads/gcp_cred.json"
-
-Step 2: Create project(till now I am unable to create project using terraform due to permission issue)
-
-Step 3: Permission to authenticate GCP APIs
- APIs & Services: enabled APIs & Services => click on ENABLE APIS AND SERVICES => Compute Engine API and Cloud SQL Admin API
+Step 1: Authentication to GCP
 
 Execution Flow
 =====================
  * Step 1: Authentication to GCP
  ```
- export GOOGLE_APPLICATION_CREDENTIALS="~/Downloads/gcp_cred.json"
+Service account creation=> IAM -> Service accounts -> create service account -> service account name : mysa -> click on CREATE AND CONTINUE ->  select a role -> Basic : owner -> continue -> done -> click on service account -> keys -> add key 
+
+Create project=>(till now I am unable to create project using terraform due to permission issue)
+
+Permission to authenticate GCP APIs => APIs & Services: enabled APIs & Services => click on ENABLE APIS AND SERVICES => Compute Engine API and Cloud SQL Admin API
+
+export GOOGLE_APPLICATION_CREDENTIALS="~/Downloads/gcp_cred.json"
  ```
 * Step 2: clone repo
 ```
