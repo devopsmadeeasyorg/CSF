@@ -61,14 +61,16 @@ Azure
 =======
 Pre-Requisites
 =====================
-Step 1:Service principal creation to authenticate Azure from Terraform client
-
+* Step 1:Service principal creation to authenticate Azure from Terraform client
+```
 Azure active directory => App registrations => New registration -> Name : <<mysp>> -> Register -> Certificates & secrets -> Client secrets -> New client secret -> Add -> copy client secret value
-
-Step 2: Permission for service principla:<<mysp>> to create resource group
-
+```
+* Step 2: Permission for service principla:<<mysp>> to create resource group
+```
 Subscription => IAM => Add -> add role assignment -> Role => Privileged administrator roles=> contributor -> members -> select members => select: <<mysp>> => click on Review + assign
-
+```
+* Step 3: Export credentials
+```
 $Env:ARM_TENANT_ID=""
 
 $Env:ARM_SUBSCRIPTION_ID=""
@@ -76,22 +78,23 @@ $Env:ARM_SUBSCRIPTION_ID=""
 $Env:ARM_CLIENT_ID=""
 
 $Env:ARM_CLIENT_SECRET=""
-
+```
 Execution Flow
 =====================
-step 1: clone repo
-
-$git clone https://github.com/fullstack2025/CSF.git
-
-Step 2: Modify variables
->ssh-keygen
+* Step 1: clone repo
+```
+$git clone https://github.com/fullstack2025/CSF.git && cd CSF
+```
+* Step 2: Modify variables
+```
+ >ssh-keygen
 
 vi CSF/cluster-templates/azure_dev_cluster.json
 
 Step 3: move to azure directory
 
 cd CSF/provider-templates/azure
-
+```
 $terraform init .
 
 $terraform validate 
