@@ -37,6 +37,7 @@ optional: Change db ip: https://github.com/csp2022/CSP/blob/master/utils/flask/i
 python3 csf_gateway.py --cluster_data cluster-templates/aws_dev_cluster.json --action provision
 ```
 * Step 5: Post provision steps
+```
 login to bastionhost
 
 eval `ssh-agent`
@@ -52,6 +53,7 @@ mysql -h mysqldb9.ctamf3ldkqod.us-east-1.rds.amazonaws.com -P 3306 -u cloud -p c
 CREATE TABLE student ( id int NOT NULL AUTO_INCREMENT, first_name varchar(255) DEFAULT NULL, last_name varchar(255) DEFAULT NULL, email_id varchar(255) DEFAULT NULL, PRIMARY KEY (id) ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO student VALUES (1,'krishna','maram','krishnamaram2@gmail.com');
+```
 * Step 6: Deprovision infra
 ```
 python3 csf_gateway.py --cluster_data cluster-templates/aws_dev_cluster.json --action deprovision
