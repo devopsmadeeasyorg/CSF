@@ -1,4 +1,5 @@
 { 
+    "cloud_provider": "azure",
     "mylocation" : "West US", 
     "mykey" : "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDGdqmjHwxpRSG/MqmiUJM4pvwGKipFFodfsRNpZqVGrRK/P/WSR0hVgfhy2CnaUWD2xNiBZUzv1XZFGT86H271CKVxz7rJBIQodclqvjvmEx2/K0U3uPjnpAR3yzPs1lzDaCFEBYhn6v/U6Cz15PTRHDTaIqi/Qk5cDbxD+wuPsuAxXFpH4ScizrmjKNV05dGrQZJxSwmB3R284EmWtm/VgD6ilOaThffNXxv1BWn9Krk7L7PuP2RW3YBvN1oPZx0Xozll4AoFsSJYOcZnyhGpo5FBw1ozAq/lk4vVvNtydlH4oeo8ufQKLxls6AmrdQ1LldCbi6mkONzOaHbhKsIo+7QvpspTSVc9Tf1ZP+6MzHoGjynogcPtSV/fYa+Tdq8xCNETul1g8ZuY8K+yxh4JskIsYbwrrR1Xs8nlvi9kWaN/Z3NeILTcHKQC8RibhXBtH7aH0cXmeEldgHyUvLQht1BKwKDj6e58AdfBhTkto+i3thSHvCqFQ2Ya2MuGqrk= krishna@krish"
 }
