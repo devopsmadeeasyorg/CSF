@@ -104,10 +104,6 @@ python3 csf_gateway.py --cluster_data cluster-templates/azure_dev_cluster.json -
 ```
 GCP
 =======
-Pre-Requisites
-=====================
-Step 1: Authentication to GCP
-
 Execution Flow
 =====================
  * Step 1: Authentication to GCP
