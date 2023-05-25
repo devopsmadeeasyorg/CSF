@@ -32,7 +32,7 @@ ssh-keygen
 cat ~/.ssh/id_rsa.pub
 optional: Change db ip: https://github.com/csp2022/CSP/blob/master/utils/flask/index.py or login to app server instance -> flask container -> update dp ip in vi index.py file
 ```
-* Step 4: provision infra
+* Step 4: Provision infra
 ```
 python3 csf_gateway.py --cluster_data cluster-templates/aws_dev_cluster.json --action provision
 ```
@@ -71,35 +71,26 @@ Subscription => IAM => Add -> add role assignment -> Role => Privileged administ
 ```
 * Step 3: Export credentials
 ```
-$Env:ARM_TENANT_ID=""
-
-$Env:ARM_SUBSCRIPTION_ID=""
-
-$Env:ARM_CLIENT_ID=""
-
-$Env:ARM_CLIENT_SECRET=""
+export ARM_TENANT_ID="" && export ARM_SUBSCRIPTION_ID="" && export ARM_CLIENT_ID="" && export ARM_CLIENT_SECRET=""
 ```
 Execution Flow
 =====================
 * Step 1: clone repo
 ```
-$git clone https://github.com/fullstack2025/CSF.git && cd CSF
+git clone https://github.com/fullstack2025/CSF.git && cd CSF
 ```
-* Step 2: Modify variables
+* Step 2: Modify variables in cluster-templates/azure_dev_cluster.json file
 ```
- >ssh-keygen
-
-vi CSF/cluster-templates/azure_dev_cluster.json
-
-Step 3: move to azure directory
-
-cd CSF/provider-templates/azure
+ ssh-keygen
 ```
-$terraform init .
-
-$terraform validate 
-
-$terraform apply -var-file ../../cluster-templates/azure_dev_cluster.json
+* Step 3: Provision infra
+```
+python3 csf_gateway.py --cluster_data cluster-templates/azure_dev_cluster.json --action provision
+```
+```
+python3 csf_gateway.py --cluster_data cluster-templates/azure_dev_cluster.json --action deprovision
+```
+* Step 4: Post provision steps
 
 Step a: Connect to the above launched webserver instance
 
