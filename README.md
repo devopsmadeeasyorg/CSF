@@ -59,38 +59,29 @@ INSERT INTO student VALUES (1,'krishna','maram','krishnamaram2@gmail.com');
 
 Azure
 =======
-Pre-Requisites
-=====================
-* Step 1:Service principal creation to authenticate Azure from Terraform client
-```
-Azure active directory => App registrations => New registration -> Name : <<mysp>> -> Register -> Certificates & secrets -> Client secrets -> New client secret -> Add -> copy client secret value
-```
-* Step 2: Permission for service principla:<<mysp>> to create resource group
-```
-Subscription => IAM => Add -> add role assignment -> Role => Privileged administrator roles=> contributor -> members -> select members => select: <<mysp>> => click on Review + assign
-```
-* Step 3: Export credentials
-```
-export ARM_TENANT_ID="" && export ARM_SUBSCRIPTION_ID="" && export ARM_CLIENT_ID="" && export ARM_CLIENT_SECRET=""
-```
 Execution Flow
 =====================
-* Step 1: clone repo
+* Step 1: Authentication to Azure
+```
+Service principal creation=>Azure active directory => App registrations => New registration -> Name : mysp(any name we can give) -> Register -> Certificates & secrets -> Client secrets -> New client secret -> Add -> copy client secret value
+
+Assiging Permission for the above service princiap mysp to create resources in Azure => Subscription => IAM => Add -> add role assignment -> Role => Privileged administrator roles=> contributor -> members -> select members => select: <<mysp>> => click on Review + assign
+
+export ARM_TENANT_ID="" && export ARM_SUBSCRIPTION_ID="" && export ARM_CLIENT_ID="" && export ARM_CLIENT_SECRET=""
+```
+* Step 2: Clone repo
 ```
 git clone https://github.com/fullstack2025/CSF.git && cd CSF
 ```
-* Step 2: Modify variables in cluster-templates/azure_dev_cluster.json file
+* Step 3: Modify variables in cluster-templates/azure_dev_cluster.json file
 ```
  ssh-keygen
 ```
-* Step 3: Provision infra
+* Step 4: Provision infra
 ```
 python3 csf_gateway.py --cluster_data cluster-templates/azure_dev_cluster.json --action provision
 ```
-```
-python3 csf_gateway.py --cluster_data cluster-templates/azure_dev_cluster.json --action deprovision
-```
-* Step 4: Post provision steps
+* Step 5: Post provision steps
 ```
 Connect to the above launched webserver instance
 ssh -i <> azure-user@<<PUBLIC_IP>>
@@ -104,6 +95,10 @@ cd webapp && pip3 install -r requirements.txt
 python3 manage.py makemigrations
 python3 manage.py migrate
 gunicorn main.wsgi --bind 0.0.0.0:8000
+```
+* Step 6: Deprovision infra
+```
+python3 csf_gateway.py --cluster_data cluster-templates/azure_dev_cluster.json --action deprovision
 ```
 GCP
 =======
