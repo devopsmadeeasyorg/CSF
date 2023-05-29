@@ -1,3 +1,58 @@
+# Network security group
+
+resource "azurerm_network_security_group" "haproxynsg" {
+  name                = "haproxynsg"
+  location            = azurerm_resource_group.Dev_RG.location
+  resource_group_name = azurerm_resource_group.Dev_RG.name
+  security_rule {
+    name                       = "test123"
+    priority                   = 100
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "*"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+}
+
+resource "azurerm_network_security_group" "webappnsg" {
+  name                = "webappnsg"
+  location            = azurerm_resource_group.Dev_RG.location
+  resource_group_name = azurerm_resource_group.Dev_RG.name
+  security_rule {
+    name                       = "test123"
+    priority                   = 100
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "*"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+}
+
+resource "azurerm_network_interface_security_group_association" "haproxy_nic_nsg" {
+  network_interface_id      = azurerm_network_interface.haproxynic.id
+  network_security_group_id = azurerm_network_security_group.haproxynsg.id
+}
+
+resource "azurerm_network_interface_security_group_association" "webapp_nic_nsg" {
+  network_interface_id      = azurerm_network_interface.webappnic.id
+  network_security_group_id = azurerm_network_security_group.webappnsg.id
+}
+
+
+
+
+
+
+
+
+
+
 resource "azurerm_subnet_network_security_group_association" "private_subnet1_webappnsg" {
   subnet_id                 = azurerm_subnet.private_subnet1.id
   network_security_group_id = azurerm_network_security_group.webappnsg.id
