@@ -77,7 +77,8 @@ git clone https://github.com/fullstack2025/CSF.git && cd CSF
 ```
 * Step 3: Modify variables in cluster-templates/azure_dev_cluster.json file
 ```
- ssh-keygen
+ssh-keygen
+cat ~/.ssh/id_rsa.pub
 ```
 * Step 4: Provision infra
 ```
@@ -85,8 +86,10 @@ python3 csf_gateway.py --cluster_data cluster-templates/azure_dev_cluster.json -
 ```
 * Step 5: Post provision steps
 ```
-Connect to the above launched webserver instance
-ssh -i <> azure-user@<<PUBLIC_IP>>
+login to haproxy instance(like bastionhost here)
+eval `ssh-agent`
+ssh-add -k ~/.ssh/id_rsa
+ssh -A azure-user@PUBLIC_IP
 sudo yum install python3-pip -y
 sudo pip3 install gunicorn
 sudo pip3 install django
