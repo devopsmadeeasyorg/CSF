@@ -87,8 +87,8 @@ resource "azurerm_linux_virtual_machine" "webapp" {
 }
 
 # Azure Load balancers
-resource "azurerm_public_ip" "example" {
-  name                = "PublicIPForLB"
+resource "azurerm_public_ip" "lbpip" {
+  name                = "LBpip"
   resource_group_name = azurerm_resource_group.Dev_RG.name
   location            = azurerm_resource_group.Dev_RG.location
   allocation_method   = "Static"
@@ -96,14 +96,14 @@ resource "azurerm_public_ip" "example" {
 }
 
 resource "azurerm_lb" "example" {
-  name                = "test-lb"
+  name                = "LB"
   resource_group_name = azurerm_resource_group.Dev_RG.name
   location            = azurerm_resource_group.Dev_RG.location
-  sku = "Standard"
+  # sku = "Standard"
 
   frontend_ip_configuration {
     name                 = "PublicIPAddress"
-    public_ip_address_id = azurerm_public_ip.example.id
+    public_ip_address_id = azurerm_public_ip.lbpip.id
   }
 }
 
@@ -127,4 +127,16 @@ resource "azurerm_lb_backend_address_pool_address" "example" {
   backend_address_pool_id = azurerm_lb_backend_address_pool.example.id
   virtual_network_id      = azurerm_virtual_network.Dev_VNet.id
   ip_address              = azurerm_linux_virtual_machine.haproxy.private_ip_address
+}
+
+resource "azurerm_lb_backend_address_pool" "webapplb" {
+  loadbalancer_id = azurerm_lb.example.id
+  name            = "WebappBackEndAddressPool"
+}
+
+resource "azurerm_lb_backend_address_pool_address" "webapplbaddress" {
+  name                    = "webapplbpooladrress"
+  backend_address_pool_id = azurerm_lb_backend_address_pool.webapplb.id
+  virtual_network_id      = azurerm_virtual_network.Dev_VNet.id
+  ip_address              = azurerm_linux_virtual_machine.webapp.private_ip_address
 }
