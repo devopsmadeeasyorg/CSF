@@ -99,7 +99,7 @@ resource "azurerm_lb" "example" {
   name                = "LB"
   resource_group_name = azurerm_resource_group.Dev_RG.name
   location            = azurerm_resource_group.Dev_RG.location
-  # sku = "Standard"
+  sku = "Standard"
 
   frontend_ip_configuration {
     name                 = "PublicIPAddress"
@@ -114,20 +114,20 @@ resource "azurerm_lb_rule" "example" {
   frontend_port                  = 80
   backend_port                   = 8000
   frontend_ip_configuration_name = "PublicIPAddress"
-  backend_address_pool_ids = [azurerm_lb_backend_address_pool.example.id]
+  backend_address_pool_ids = [azurerm_lb_backend_address_pool.webapplb.id]
 }
 
-resource "azurerm_lb_backend_address_pool" "example" {
-  loadbalancer_id = azurerm_lb.example.id
-  name            = "BackEndAddressPool"
-}
+# resource "azurerm_lb_backend_address_pool" "example" {
+#   loadbalancer_id = azurerm_lb.example.id
+#   name            = "BackEndAddressPool"
+# }
 
-resource "azurerm_lb_backend_address_pool_address" "example" {
-  name                    = "example"
-  backend_address_pool_id = azurerm_lb_backend_address_pool.example.id
-  virtual_network_id      = azurerm_virtual_network.Dev_VNet.id
-  ip_address              = azurerm_linux_virtual_machine.haproxy.private_ip_address
-}
+# resource "azurerm_lb_backend_address_pool_address" "example" {
+#   name                    = "example"
+#   backend_address_pool_id = azurerm_lb_backend_address_pool.example.id
+#   virtual_network_id      = azurerm_virtual_network.Dev_VNet.id
+#   ip_address              = azurerm_linux_virtual_machine.haproxy.private_ip_address
+# }
 
 resource "azurerm_lb_backend_address_pool" "webapplb" {
   loadbalancer_id = azurerm_lb.example.id

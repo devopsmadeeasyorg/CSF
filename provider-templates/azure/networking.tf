@@ -68,7 +68,7 @@ resource "azurerm_route_table" "private_route_table" {
   disable_bgp_route_propagation = false
   route {
     name           = "eggress-route-to-internet"
-    address_prefix = "0.0.0.0/0"
+    address_prefix = "${azurerm_public_ip.ngwpip.ip_address}/32"
     next_hop_type  = "VirtualAppliance"
     next_hop_in_ip_address = azurerm_public_ip.ngwpip.ip_address
   }
