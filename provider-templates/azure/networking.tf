@@ -87,36 +87,6 @@ resource "azurerm_subnet_route_table_association" "pvrtba2" {
 
 
 
-# NAT Gateway
-resource "azurerm_nat_gateway" "myngw" {
-  name                    = "myngw"
-  location            = azurerm_resource_group.Dev_RG.location
-  resource_group_name = azurerm_resource_group.Dev_RG.name
-  sku_name                = "Standard"
-  idle_timeout_in_minutes = 10
-  # zones                   = ["1"]
-}
-
-resource "azurerm_public_ip" "ngwpip" {
-  name                = "ngwpip"
-  location            = azurerm_resource_group.Dev_RG.location
-  resource_group_name = azurerm_resource_group.Dev_RG.name
-  allocation_method   = "Static"
-  sku                 = "Standard"
-  # zones               = ["1"]
-}
-
-resource "azurerm_nat_gateway_public_ip_association" "ngwpip" {
-  nat_gateway_id       = azurerm_nat_gateway.myngw.id
-  public_ip_address_id = azurerm_public_ip.ngwpip.id
-}
-
-resource "azurerm_subnet_nat_gateway_association" "ngwsubnet" {
-  subnet_id      = azurerm_subnet.public_subnet2.id
-  nat_gateway_id = azurerm_nat_gateway.myngw.id
-}
-
-
 
 # Public ips and Network Interfaces
 resource "azurerm_public_ip" "haproxypip" {
@@ -151,4 +121,37 @@ resource "azurerm_network_interface" "webappnic" {
     private_ip_address_allocation = "Dynamic"
   }
 }
+
+
+
+
+# NAT Gateway
+resource "azurerm_nat_gateway" "myngw" {
+  name                    = "myngw"
+  location            = azurerm_resource_group.Dev_RG.location
+  resource_group_name = azurerm_resource_group.Dev_RG.name
+  sku_name                = "Standard"
+  idle_timeout_in_minutes = 10
+  # zones                   = ["1"]
+}
+
+resource "azurerm_public_ip" "ngwpip" {
+  name                = "ngwpip"
+  location            = azurerm_resource_group.Dev_RG.location
+  resource_group_name = azurerm_resource_group.Dev_RG.name
+  allocation_method   = "Static"
+  sku                 = "Standard"
+  # zones               = ["1"]
+}
+
+resource "azurerm_nat_gateway_public_ip_association" "ngwpip" {
+  nat_gateway_id       = azurerm_nat_gateway.myngw.id
+  public_ip_address_id = azurerm_public_ip.ngwpip.id
+}
+
+resource "azurerm_subnet_nat_gateway_association" "ngwsubnet" {
+  subnet_id      = azurerm_subnet.public_subnet2.id
+  nat_gateway_id = azurerm_nat_gateway.myngw.id
+}
+
 

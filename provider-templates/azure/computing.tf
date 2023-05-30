@@ -1,6 +1,6 @@
 # Azure Virtual Machines
 resource "azurerm_linux_virtual_machine" "haproxy" {
-  name                  = "haproxy"
+  name                  = "bastionhost"
   location              = azurerm_resource_group.Dev_RG.location
   resource_group_name   = azurerm_resource_group.Dev_RG.name
   network_interface_ids = [azurerm_network_interface.haproxynic.id]
