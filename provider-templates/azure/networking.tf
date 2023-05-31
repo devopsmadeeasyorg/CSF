@@ -89,23 +89,23 @@ resource "azurerm_subnet_route_table_association" "pvrtba2" {
 
 
 # Public ips and Network Interfaces
-resource "azurerm_public_ip" "haproxypip" {
-  name                =  "haproxypip"
+resource "azurerm_public_ip" "bastionpip" {
+  name                =  "bastionpip"
   location            =  azurerm_resource_group.Dev_RG.location
   resource_group_name =  azurerm_resource_group.Dev_RG.name
   allocation_method   = "Dynamic"
 }
 
-resource "azurerm_network_interface" "haproxynic" {
-  name                = "haproxynic"
+resource "azurerm_network_interface" "bastionnic" {
+  name                = "bastionnic"
   location            = azurerm_resource_group.Dev_RG.location
   resource_group_name = azurerm_resource_group.Dev_RG.name
 
   ip_configuration {
-    name                          = "haproxyconfig"
+    name                          = "bastionconfig"
     subnet_id                     = azurerm_subnet.public_subnet1.id
     private_ip_address_allocation = "Dynamic"
-    public_ip_address_id = azurerm_public_ip.haproxypip.id
+    public_ip_address_id = azurerm_public_ip.bastionpip.id
   }
 }
 

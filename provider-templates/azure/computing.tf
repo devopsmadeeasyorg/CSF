@@ -1,9 +1,9 @@
 # Azure Virtual Machines
-resource "azurerm_linux_virtual_machine" "haproxy" {
+resource "azurerm_linux_virtual_machine" "bastion" {
   name                  = "bastionhost"
   location              = azurerm_resource_group.Dev_RG.location
   resource_group_name   = azurerm_resource_group.Dev_RG.name
-  network_interface_ids = [azurerm_network_interface.haproxynic.id]
+  network_interface_ids = [azurerm_network_interface.bastionnic.id]
   size                = "Standard_F2"
   admin_username      = "azure-user"
   
@@ -28,7 +28,7 @@ resource "azurerm_linux_virtual_machine" "haproxy" {
   }
 
   os_disk {
-    name = "haproxy-osdisk"
+    name = "bastion-osdisk"
     caching              = "ReadWrite"
     storage_account_type = "Standard_LRS"
   }
@@ -126,7 +126,7 @@ resource "azurerm_lb_rule" "example" {
 #   name                    = "example"
 #   backend_address_pool_id = azurerm_lb_backend_address_pool.example.id
 #   virtual_network_id      = azurerm_virtual_network.Dev_VNet.id
-#   ip_address              = azurerm_linux_virtual_machine.haproxy.private_ip_address
+#   ip_address              = azurerm_linux_virtual_machine.bastion.private_ip_address
 # }
 
 resource "azurerm_lb_backend_address_pool" "webapplb" {

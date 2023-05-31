@@ -1,7 +1,7 @@
 # Network security group
 
-resource "azurerm_network_security_group" "haproxynsg" {
-  name                = "haproxynsg"
+resource "azurerm_network_security_group" "bastionnsg" {
+  name                = "bastionnsg"
   location            = azurerm_resource_group.Dev_RG.location
   resource_group_name = azurerm_resource_group.Dev_RG.name
   security_rule {
@@ -34,9 +34,9 @@ resource "azurerm_network_security_group" "webappnsg" {
   }
 }
 
-resource "azurerm_network_interface_security_group_association" "haproxy_nic_nsg" {
-  network_interface_id      = azurerm_network_interface.haproxynic.id
-  network_security_group_id = azurerm_network_security_group.haproxynsg.id
+resource "azurerm_network_interface_security_group_association" "bastion_nic_nsg" {
+  network_interface_id      = azurerm_network_interface.bastionnic.id
+  network_security_group_id = azurerm_network_security_group.bastionnsg.id
 }
 
 resource "azurerm_network_interface_security_group_association" "webapp_nic_nsg" {
