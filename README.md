@@ -133,6 +133,8 @@ login to bastionhost
 eval `ssh-agent`
 ssh-add -k ~/.ssh/id_rsa
 ssh -A gcp-user@PUBLIC_IP
+login to appserver
+sudo su -l
 sudo yum install python3-pip -y && sudo pip3 install gunicorn && sudo pip3 install django
 sudo vi /usr/local/lib64/python3.6/site-packages/django/db/backends/sqlite3/base.py (line 67 replace > with ==)
 sudo yum install git -y && sudo git clone https://github.com/devops2023q2/webapp.git && cd webapp && sudo pip3 install -r requirements.txt
