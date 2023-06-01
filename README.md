@@ -111,7 +111,7 @@ Create project=>(till now I am unable to create project using terraform due to p
 
 Permission to authenticate GCP APIs => APIs & Services: enabled APIs & Services => click on ENABLE APIS AND SERVICES => Compute Engine API and Cloud SQL Admin API
 
-export GOOGLE_APPLICATION_CREDENTIALS="~/Downloads/gcp_cred.json"
+export GOOGLE_APPLICATION_CREDENTIALS=~/Downloads/gcp_cred.json
  ```
 * Step 2: clone repo
 ```

@@ -8,7 +8,7 @@ terraform {
 }
 
 provider "google" {
-  credentials = "${file("~/Downloads/gcp_cred.json")}" # to hard code credentials file
+  # credentials = "${file("~/Downloads/gcp_cred.json")}" # to hard code credentials file
   #credentials = file("*.json") # to hard code credentials file
   project = "${var.myproject}"
   region = "${var.myregion}"

@@ -1,20 +1,20 @@
 ### Instance template
 
-resource "google_compute_instance_template" "myit" {
-  name        = "webserver-template"
-  instance_description = "description assigned to instances"
-  machine_type         = "e2-medium"
-  can_ip_forward       = false
-  disk {
-    source_image      = "debian-11-bullseye-v20220519"
-    auto_delete       = true
-    boot              = true
-    disk_type = "pd-balanced"
-  }
-  network_interface {
-    subnetwork = google_compute_subnetwork.mysubnet.id
-  }
-}
+# resource "google_compute_instance_template" "myit" {
+#   name        = "webserver-template"
+#   instance_description = "description assigned to instances"
+#   machine_type         = "e2-medium"
+#   can_ip_forward       = false
+#   disk {
+#     source_image      = "debian-11-bullseye-v20220519"
+#     auto_delete       = true
+#     boot              = true
+#     disk_type = "pd-balanced"
+#   }
+#   network_interface {
+#     subnetwork = google_compute_subnetwork.mysubnet.id
+#   }
+# }
 
 ### Instance group
 resource "google_compute_instance_group" "myig" {
@@ -28,12 +28,12 @@ resource "google_compute_instance_group" "myig" {
 
   named_port {
     name = "tcp"
-    port = "5001"
+    port = "8000"
   }
 
   named_port {
     name = "http"
-    port = "5001"
+    port = "8000"
   }
 
   zone = "us-west2-a"
