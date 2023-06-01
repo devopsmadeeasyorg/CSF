@@ -129,18 +129,18 @@ optional: Change db ip: https://github.com/csp2022/CSP/blob/master/utils/flask/i
 python3 csf_gateway.py --cluster_data cluster-templates/gcp_dev_cluster.json --action provision
 ```
 ```
-python3 csf_gateway.py --cluster_data cluster-templates/gcp_dev_cluster.json --action deprovision
-```
 * Step 5: Post provision steps
- ```
-=>login to app server instance -> flask container -> update dp ip in vi index.py file
-$mysql -h IP -u USERNAME -p DBNAME
- 
-mysql>CREATE TABLE student ( id int NOT NULL AUTO_INCREMENT, first_name varchar(255) DEFAULT NULL, last_name varchar(255) DEFAULT NULL, email_id varchar(255) DEFAULT NULL, PRIMARY KEY (id) ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
- 
-mysql>INSERT INTO student VALUES (1,'krishna','maram','krishnamaram2@gmail.com');
+```
+login to bastionhost
+eval `ssh-agent`
+ssh-add -k ~/.ssh/id_rsa
+ssh -A gcp-user@PUBLIC_IP
+sudo yum install python3-pip -y && sudo pip3 install gunicorn && sudo pip3 install django
+sudo vi /usr/local/lib64/python3.6/site-packages/django/db/backends/sqlite3/base.py (line 67 replace > with ==)
+sudo yum install git -y && sudo git clone https://github.com/devops2023q2/webapp.git && cd webapp && sudo pip3 install -r requirements.txt
+gunicorn main.wsgi --bind 0.0.0.0:8000
 ```
 * Step 6: Deprovision infra
 ```
-python3 csf_gateway.py --cluster_data cluster-templates/gcp_dev_cluster.json --action deprovision
+python3 csf_gateway.py --cluster_data cluster-templates/azure_dev_cluster.json --action deprovision
 ```
