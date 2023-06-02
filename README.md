@@ -18,8 +18,7 @@ Execution Flow
 =====================
 * Step 1: Authentication to AWS 
 ```
-export AWS_ACCESS_KEY_ID=""
-export AWS_SECRET_ACCESS_KEY=""
+export AWS_ACCESS_KEY_ID="" && export AWS_SECRET_ACCESS_KEY=""
 ```
 * Step 2: clone repo
 ```
