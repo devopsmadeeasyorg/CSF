@@ -6,20 +6,20 @@ output "myvpc" {
   value = "${aws_vpc.myvpc.id}"
 }
 
-output "lb-subnet2" {
-  value = "${aws_subnet.lb-subnet2.id}"
+output "public-subnet2" {
+  value = "${aws_subnet.public-subnet2.id}"
 }
 
-output "lb-subnet1" {
-  value = "${aws_subnet.lb-subnet1.id}"
+output "public-subnet1" {
+  value = "${aws_subnet.public-subnet1.id}"
 }
 
-output "webapp-subnet1" {
-  value = "${aws_subnet.webapp-subnet1.id}"
+output "private-subnet1" {
+  value = "${aws_subnet.private-subnet1.id}"
 }
 
-output "webapp-subnet2" {
-  value = "${aws_subnet.webapp-subnet2.id}"
+output "private-subnet2" {
+  value = "${aws_subnet.private-subnet2.id}"
 }
 
 output "db-subnet-group" {

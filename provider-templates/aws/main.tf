@@ -14,10 +14,6 @@ mypublickey = "${var.mypublickey}"
 access_network_list =  "${var.access_network_list}"
 }
 
-module "cloudinit"{
-source = "./modules/cloudinit"
-}
-
 module "computing"{
 source = "./modules/computing"
 myami = "${var.myami}"
@@ -38,13 +34,13 @@ source = "./modules/storage"
 webapp-server-1 = "${module.computing.webapp-server-1}"
 }
 
-module "databases"{
-source = "./modules/databases"
-db-subnet-group = "${module.networking.db-subnet-group}"
-db-sg = "${module.security.db-sg}"
-}
+# module "databases"{
+# source = "./modules/databases"
+# db-subnet-group = "${module.networking.db-subnet-group}"
+# db-sg = "${module.security.db-sg}"
+# }
 
-module "monitoring"{
-source = "./modules/monitoring"
-lambdaarn = "${module.computing.lambdaarn}"
-}
+# module "monitoring"{
+# source = "./modules/monitoring"
+# lambdaarn = "${module.computing.lambdaarn}"
+# }

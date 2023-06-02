@@ -6,6 +6,7 @@ Name = "myvpc"
 }
 }
 
+####### IGW ################3
 resource "aws_internet_gateway" "myigw"{
 vpc_id = "${aws_vpc.myvpc.id}"
 tags={
@@ -13,150 +14,100 @@ Name = "myigw"
 }
 }
 
+###### NAT Gateway ###############
 resource "aws_eip" "ngweip"{
 vpc = true
 }
 
 resource "aws_nat_gateway" "myngw" {
   allocation_id = "${aws_eip.ngweip.id}"
-  subnet_id     = "${aws_subnet.lb-subnet2.id}"
+  subnet_id     = "${aws_subnet.public-subnet2.id}"
   tags = {
     Name = "myngw"
   }
 }
-############################################ LB Subnets ###############################
-resource "aws_subnet" "lb-subnet1"{
+############################################ public Subnets ###############################
+resource "aws_subnet" "public_subnet1"{
 vpc_id = "${aws_vpc.myvpc.id}"
 cidr_block = "10.0.10.0/24"
 availability_zone = "us-east-1a"
 tags={
-Name = "lb-subnet1"
+Name = "public-subnet1"
 }
 }
 
-resource "aws_subnet" "lb-subnet2"{
+resource "aws_subnet" "public_subnet2"{
 vpc_id = "${aws_vpc.myvpc.id}"
 cidr_block = "10.0.20.0/24"
 availability_zone = "us-east-1b"
 tags={
-Name = "lb-subnet2"
+Name = "public-subnet2"
 }
 }
 
-resource "aws_route_table" "lb-rtb"{
+resource "aws_route_table" "public_rtb"{
 vpc_id = "${aws_vpc.myvpc.id}"
 tags = {
-Name = "lb-rtb"
+Name = "public_rtb"
 }
 }
 
 resource "aws_route" "publicrt"{
-route_table_id = "${aws_route_table.lb-rtb.id}"
+route_table_id = "${aws_route_table.public-rtb.id}"
 destination_cidr_block = "0.0.0.0/0"
 gateway_id = "${aws_internet_gateway.myigw.id}"
 }
  
-resource "aws_route_table_association" "lbrtba1"{
-route_table_id = "${aws_route_table.lb-rtb.id}"
-subnet_id = "${aws_subnet.lb-subnet1.id}"
+resource "aws_route_table_association" "publicrtba1"{
+route_table_id = "${aws_route_table.public-rtb.id}"
+subnet_id = "${aws_subnet.public-subnet1.id}"
 }
 
-resource "aws_route_table_association" "lbrtba2"{
-route_table_id = "${aws_route_table.lb-rtb.id}"
-subnet_id = "${aws_subnet.lb-subnet2.id}"
+resource "aws_route_table_association" "publicrtba2"{
+route_table_id = "${aws_route_table.public-rtb.id}"
+subnet_id = "${aws_subnet.public-subnet2.id}"
 }
 
-############################################ webapp Subnets ###############################3
-resource "aws_subnet" "webapp-subnet1"{
+############################################ Private Subnets ###############################3
+resource "aws_subnet" "private-subnet1"{
 vpc_id = "${aws_vpc.myvpc.id}"
 cidr_block = "10.0.30.0/24"
 availability_zone = "us-east-1a"
 tags={
-Name = "webapp-subnet1"
+Name = "private-subnet1"
 }
 }
 
-resource "aws_subnet" "webapp-subnet2"{
+resource "aws_subnet" "private-subnet2"{
 vpc_id = "${aws_vpc.myvpc.id}"
 cidr_block = "10.0.40.0/24"
 availability_zone = "us-east-1b"
 tags={
-Name = "webapp-subnet2"
+Name = "private-subnet2"
 }
 }
 
-resource "aws_route_table" "webapp-rtb"{
+resource "aws_route_table" "private-rtb"{
 vpc_id = "${aws_vpc.myvpc.id}"
 tags = {
-Name = "webapp-rtb"
+Name = "private-rtb"
 }
 }
 
-resource "aws_route" "webapp-rt"{
-route_table_id = "${aws_route_table.webapp-rtb.id}"
+resource "aws_route" "private-rt"{
+route_table_id = "${aws_route_table.private-rtb.id}"
 destination_cidr_block = "0.0.0.0/0"
 nat_gateway_id = "${aws_nat_gateway.myngw.id}"
 }
 
-resource "aws_route_table_association" "webapp-rtba1"{
-route_table_id = "${aws_route_table.webapp-rtb.id}"
-subnet_id = "${aws_subnet.webapp-subnet1.id}"
+resource "aws_route_table_association" "private-rtba1"{
+route_table_id = "${aws_route_table.private-rtb.id}"
+subnet_id = "${aws_subnet.private-subnet1.id}"
 }
 
-resource "aws_route_table_association" "webapp-rtba2"{
-route_table_id = "${aws_route_table.webapp-rtb.id}"
-subnet_id = "${aws_subnet.webapp-subnet2.id}"
+resource "aws_route_table_association" "private-rtba2"{
+route_table_id = "${aws_route_table.private-rtb.id}"
+subnet_id = "${aws_subnet.private-subnet2.id}"
 }
 
 
-####################################### AWS RDS DB subnet group ##############################
-
-
-resource "aws_subnet" "db-subnet1" {
-  vpc_id       = "${aws_vpc.myvpc.id}"
-  cidr_block = "10.0.50.0/24"
-  availability_zone = "us-east-1c"
-  tags = {
-    Name = "db-subnet1"
-  }
-}
-
-resource "aws_subnet" "db-subnet2" {
-  vpc_id       = "${aws_vpc.myvpc.id}"
-  cidr_block = "10.0.60.0/24"
-  availability_zone = "us-east-1d"
-  tags = {
-    Name = "db-subnet2"
-  }
-}
-
-resource "aws_route_table" "db-rtb"{
-vpc_id = "${aws_vpc.myvpc.id}"
-tags = {
-Name = "db-rtb"
-}
-}
-
-resource "aws_route" "dbcrt"{
-route_table_id = "${aws_route_table.db-rtb.id}"
-destination_cidr_block = "0.0.0.0/0"
-nat_gateway_id = "${aws_nat_gateway.myngw.id}"
-}
- 
-resource "aws_route_table_association" "dbrtba1"{
-route_table_id = "${aws_route_table.db-rtb.id}"
-subnet_id = "${aws_subnet.db-subnet1.id}"
-}
-
-resource "aws_route_table_association" "dbrtba2"{
-route_table_id = "${aws_route_table.db-rtb.id}"
-subnet_id = "${aws_subnet.db-subnet2.id}"
-}
-
-resource "aws_db_subnet_group" "db-subnet-group" {
-  name       = "db-subnet-group"
-  subnet_ids = ["${aws_subnet.db-subnet1.id}","${aws_subnet.db-subnet2.id}"]
-  tags = {
-    Name = "My DB subnet group"
-  }
-}
