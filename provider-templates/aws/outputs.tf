@@ -1,10 +1,13 @@
-
-
-output "bastionhost_public_ip" {
-  value = "ssh centos@${module.computing.bastionhost_public_ip}"
+output "elb_dns_name" {
+value = "${aws_elb.elb_server.dns_name}"
 }
 
-# output "elb_dns_name" {
-# value = "${module.computing.elb_dns_name}"
-# }
+output "bastionhost_public_ip" {
+  value = "ssh -A centos@${aws_instance.bastionhost.public_ip}"
+}
+
+output "bastionhost_public_ip" {
+  value = "ssh -A centos@${aws_instance.bastionhost.public_ip}"
+}
+
 
