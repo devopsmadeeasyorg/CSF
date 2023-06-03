@@ -2,7 +2,7 @@
 resource "aws_instance" "bastionhost" {
 ami = "${var.myami}"
 instance_type = "t2.medium"
-subnet_id = "${var.lb-subnet1}"
+subnet_id = "${var.public-subnet1}"
 associate_public_ip_address = true
 vpc_security_group_ids = ["${var.bastion-sg}"]
 key_name = "${var.mykp}"
