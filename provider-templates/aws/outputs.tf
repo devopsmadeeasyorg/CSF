@@ -6,8 +6,5 @@ output "bastionhost_public_ip" {
   value = "ssh -A centos@${aws_instance.bastionhost.public_ip}"
 }
 
-output "bastionhost_public_ip" {
-  value = "ssh -A centos@${aws_instance.bastionhost.public_ip}"
-}
 
 
