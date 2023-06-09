@@ -39,7 +39,7 @@ python3 csf_gateway.py --cluster_data cluster-templates/aws_dev_cluster.json --a
 login to bastionhost
 eval `ssh-agent`
 ssh-add -k ~/.ssh/id_rsa
-ssh -A gcp-user@PUBLIC_IP
+ssh -A centos@PUBLIC_IP
 login to appserver
 sudo su -l
 sudo yum install python3-pip -y && sudo pip3 install gunicorn && sudo pip3 install django
