@@ -37,12 +37,9 @@ python3 csf_gateway.py --cluster_data cluster-templates/aws_dev_cluster.json --a
 * Step 5: Post provision steps
 ```
 login to bastionhost
-eval `ssh-agent`
-ssh-add -k ~/.ssh/id_rsa
-ssh -A centos@PUBLIC_IP
+eval `ssh-agent` && ssh-add -k ~/.ssh/id_rsa && ssh -A centos@PUBLIC_IP
 login to appserver
-sudo su -l
-sudo yum install python3-pip -y && sudo pip3 install gunicorn && sudo pip3 install django
+sudo su -l && sudo yum install python3-pip -y && sudo pip3 install gunicorn && sudo pip3 install django
 sudo vi /usr/local/lib64/python3.6/site-packages/django/db/backends/sqlite3/base.py (line 67 replace > with ==)
 sudo yum install git -y && sudo git clone https://github.com/devops2023q2/webapp.git && cd webapp && sudo pip3 install -r requirements.txt
 gunicorn main.wsgi --bind 0.0.0.0:8000
