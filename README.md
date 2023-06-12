@@ -76,8 +76,12 @@ python3 csf_gateway.py --cluster_data cluster-templates/azure_dev_cluster.json -
 ```
 * Step 5: Post provision steps
 ```
-login to haproxy instance(like bastionhost here)
+login to bastionhost
 eval `ssh-agent` && ssh-add -k ~/.ssh/id_rsa && ssh -A azure-user@PUBLIC_IP
+login to webapp server
+ssh azure-user@private_ip
+or
+Use browser based Bastionhost from portal to webapp server
 sudo yum install python3-pip -y && sudo pip3 install gunicorn && sudo pip3 install django
 sudo vi /usr/local/lib64/python3.6/site-packages/django/db/backends/sqlite3/base.py (line 67 replace > with ==)
 sudo yum install git -y && sudo git clone https://github.com/devops2023q2/webapp.git && cd webapp && sudo pip3 install -r requirements.txt
