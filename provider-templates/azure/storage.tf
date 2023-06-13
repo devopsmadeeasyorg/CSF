@@ -1,6 +1,6 @@
 # Block storage
 resource "azurerm_managed_disk" "datadisk" {
-  name = "${azurerm_linux_virtual_machine.webapp.name}-datadisk1"
+  name = "${azurerm_linux_virtual_machine.webapp_server_1.name}-datadisk1"
   location            = azurerm_resource_group.Dev_RG.location
   resource_group_name = azurerm_resource_group.Dev_RG.name
   storage_account_type = "Standard_LRS"
@@ -10,7 +10,7 @@ resource "azurerm_managed_disk" "datadisk" {
 
 resource "azurerm_virtual_machine_data_disk_attachment" "vm_ddisk1" {
   managed_disk_id    = azurerm_managed_disk.datadisk.id
-  virtual_machine_id = azurerm_linux_virtual_machine.webapp.id
+  virtual_machine_id = azurerm_linux_virtual_machine.webapp_server_1.id
   lun                = "10"
   caching            = "ReadWrite"
 }

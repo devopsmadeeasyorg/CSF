@@ -109,14 +109,26 @@ resource "azurerm_network_interface" "bastionnic" {
   }
 }
 
-# Network interface for Webapp server
-resource "azurerm_network_interface" "webappnic" {
-  name                = "webappnic"
+# Network interface for Webapp servers
+resource "azurerm_network_interface" "webapp_server_1_nic" {
+  name                = "webapp_server_1_nic"
   location            = azurerm_resource_group.Dev_RG.location
   resource_group_name = azurerm_resource_group.Dev_RG.name
 
   ip_configuration {
-    name                          = "webappconfig"
+    name                          = "webapp_server_1_nic_config"
+    subnet_id                     = azurerm_subnet.private_subnet1.id
+    private_ip_address_allocation = "Dynamic"
+  }
+}
+
+resource "azurerm_network_interface" "webapp_server_2_nic" {
+  name                = "webapp_server_2_nic"
+  location            = azurerm_resource_group.Dev_RG.location
+  resource_group_name = azurerm_resource_group.Dev_RG.name
+
+  ip_configuration {
+    name                          = "webapp_server_2_nic_config"
     subnet_id                     = azurerm_subnet.private_subnet1.id
     private_ip_address_allocation = "Dynamic"
   }

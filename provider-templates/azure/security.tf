@@ -56,8 +56,13 @@ resource "azurerm_network_interface_security_group_association" "bastion_nic_nsg
   network_security_group_id = azurerm_network_security_group.bastionnsg.id
 }
 
-resource "azurerm_network_interface_security_group_association" "webapp_nic_nsg" {
-  network_interface_id      = azurerm_network_interface.webappnic.id
+resource "azurerm_network_interface_security_group_association" "webapp_server_1_nic_nsg" {
+  network_interface_id      = azurerm_network_interface.webapp_server_1_nic.id
+  network_security_group_id = azurerm_network_security_group.webappnsg.id
+}
+
+resource "azurerm_network_interface_security_group_association" "webapp_server_2_nic_nsg" {
+  network_interface_id      = azurerm_network_interface.webapp_server_2_nic.id
   network_security_group_id = azurerm_network_security_group.webappnsg.id
 }
 
@@ -85,7 +90,7 @@ data "azurerm_client_config" "current" {}
 
 # Key Vault
 resource "azurerm_key_vault" "Dev-KV" {
-  name                        = "Dev-KV-2023q2"
+  name                        = "Dev-KV-2023q23"
   resource_group_name = azurerm_resource_group.Dev_RG.name
   location            = azurerm_resource_group.Dev_RG.location
   enabled_for_disk_encryption = true
