@@ -1,5 +1,22 @@
-# Network security group
+##################### managed Identity ####################
+resource "azurerm_user_assigned_identity" "managed_identity" {
+  name                = "managed-identity"
+location            = azurerm_resource_group.Dev_RG.location
+resource_group_name = azurerm_resource_group.Dev_RG.name
+}
+# resource "azurerm_role_assignment" "assign_identity_storage_blob_data_contributor" {
+#   scope                = azurerm_storage_account.storageaccount.id
+#   role_definition_name = "Contributor"
+#   principal_id         = azurerm_user_assigned_identity.managed_identity.principal_id
+# }
 
+# resource "azurerm_role_assignment" "assign_identity_at_rg_level" {
+#   scope                = azurerm_resource_group.Dev_RG.id
+#   role_definition_name = "Reader"
+#   principal_id         = azurerm_user_assigned_identity.managed_identity.principal_id
+# }
+
+# Network security groups
 resource "azurerm_network_security_group" "bastionnsg" {
   name                = "bastionnsg"
   location            = azurerm_resource_group.Dev_RG.location
