@@ -51,6 +51,7 @@ resource "azurerm_network_security_group" "webappnsg" {
   }
 }
 
+# Attached Network Security Group at Network Interface level
 resource "azurerm_network_interface_security_group_association" "bastion_nic_nsg" {
   network_interface_id      = azurerm_network_interface.bastionnic.id
   network_security_group_id = azurerm_network_security_group.bastionnsg.id
@@ -66,15 +67,7 @@ resource "azurerm_network_interface_security_group_association" "webapp_server_2
   network_security_group_id = azurerm_network_security_group.webappnsg.id
 }
 
-
-
-
-
-
-
-
-
-
+# Attached Network Security Group at Subnet level
 resource "azurerm_subnet_network_security_group_association" "private_subnet1_webappnsg" {
   subnet_id                 = azurerm_subnet.private_subnet1.id
   network_security_group_id = azurerm_network_security_group.webappnsg.id
