@@ -46,6 +46,7 @@ if __name__ == "__main__":
     print("options", options)
     with open(options["cluster_data"], 'r') as cd: cluster_data = json.loads(cd.read())
     print("cluster_data", cluster_data)
+    time.sleep(300)
     options_list = options["actions"].split(",")
     if "provision" in options_list:
         provision_cluster(cluster_data)
