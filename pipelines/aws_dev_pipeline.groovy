@@ -28,7 +28,7 @@ pipeline {
             steps {
                 withFileparameter('CLUSTER_DATA'){
                 script {
-                    gitClone()
+                   gitClone()
                    // read json data
                    data = sh(script: "cat $CLUSTER_DATA", returnStdout: true)
                    jsonData = new JsonSlurperClassic().parseText(data)

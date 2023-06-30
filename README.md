@@ -2,6 +2,19 @@ Project Title
 =====================
 This project is intended to provision infrastructure on AWS, Azure and GCP.
 
+* Plugins
+```
+Mask Passwords
+CloudBees Credentials
+CloudBees AWS Credentials
+File parameter
+```
+* Softwares to be installed
+```
+sudo yum install python3-pip
+sudo pip3 install boto3
+```
+
 Pre-Requisites
 ============================
 * Step 1: Download terraform utility
