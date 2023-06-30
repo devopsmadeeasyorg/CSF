@@ -42,6 +42,7 @@ pipeline {
         // keys rotation
         stage("Execute tasks"){
             steps{
+            withFileParameter('CLUSTER_DATA'){
             script {
                 sh """
                   cat ${CLUSTER_DATA}
@@ -51,6 +52,7 @@ pipeline {
                 """
                 
                 }
+            }
                 
             }
             }
