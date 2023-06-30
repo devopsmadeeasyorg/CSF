@@ -35,6 +35,28 @@ pipeline {
                    if(jsonData.containsKey('cloud_provider')){
                     currentBuild.displayName = jsonData['cloud_provider']
                    }
+                   else {
+                    cloud_provider = ""
+                   }
+                   cloud_provider = jsonData['cloud_provider']
+                // The below commented line are to send notifications via Teams and Slack channel
+                //    if(cloud_provider == "aws") {
+                //     // slack channel id and teams webhook url
+                //     channelID = ""
+                //     webhookURL = "" 
+                //    }
+                //    else if(cloud_provider == "azure"){
+                //     // slack channel id and teams webhook url
+                //     channelID = ""
+                //     webhookURL = "" 
+                //    }
+                //    else{
+                //     // slack channel id and teams webhook url
+                //     channelID = ""
+                //     webhookURL = "" 
+                //    }
+                //    slackSend(color: "#00FF00", channel: channelID, message: "cluster provision/deprovision request received with \nJenkins job: ${env.BUILD_URL}")
+                //    office365ConnectorSend color: "#00FF00", webhookUrl: webhookURL, message: "cluster provision/deprovision request received with \nJenkins job: ${env.BUILD_URL}"
                 }
                 }
             }
