@@ -18,8 +18,8 @@ pipeline {
     // Passing parameters 
     parameters {
         base64File 'CLUSTER_DATA'
-        string(name: "BRANCH_NAME", description: "Branch Name", defaultValue: "dev")
-        string(name: "ACTIONS", description: "Actions", defaultValue: "provision")
+        string(name: "BRANCH_NAME", description: "Branch Name", defaultValue: "master")
+        string(name: "TASKS", description: "Actions", defaultValue: "provision")
     }
     // Stages in execution
     stages{
@@ -48,7 +48,7 @@ pipeline {
                   cat ${CLUSTER_DATA}
                   export AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
                   export AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
-                  cd ${deployDir} && python3 csf_gateway.py --cluster_data ${CLUSTER_DATA} --action $ACTIONS
+                  cd ${deployDir} && python3 csf_gateway.py --cluster_data ${CLUSTER_DATA} --action $TASKS
                 """
                 
                 }
