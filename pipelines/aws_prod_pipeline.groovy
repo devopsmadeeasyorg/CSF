@@ -19,7 +19,7 @@ pipeline {
     parameters {
         string(name: "CLUSTER_DATA", description: "Cluster Data JSON")
         string(name: "BRANCH_NAME", description: "Branch Name", defaultValue: "dev")
-        string(name: "ACTIONS", description: "Actions", defaultValue: "validate_request,provision")
+        string(name: "TASKS", description: "Actions", defaultValue: "validate_request,provision")
     }
     // Stages in execution
     stages{
@@ -32,17 +32,26 @@ pipeline {
                     echo ${params.CLUSTER_DATA} > ${deployDir}/cluster_data.json
                     cat ${deployDir}/cluster_data.json
                     """
+                    // read json data and update build number
+                   data = sh(script: "${deployDir}/cluster_data.json", returnStdout: true)
+                   jsonData = new JsonSlurperClassic().parseText(data)
+                   if(jsonData.containsKey('cloud_provider')){
+                    currentBuild.displayName = jsonData['cloud_provider']
+                   }
+                   else {
+                    cloud_provider = ""
+                   }
                 }
             }
         }
-        // keys rotation
+        // provision infrastructure
         stage("Execute tasks"){
             steps{
             script {
                 sh """
                   export AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
                   export AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
-                  cd ${deployDir} && python3 csf_gateway.py --cluster_data aws_dev_cluster.json --action provision
+                  cd ${deployDir} && python3 csf_gateway.py --cluster_data cluster_data.json --actions '${params.TASKS}'
                 """
                 
                 }

@@ -48,7 +48,7 @@ pipeline {
                   cat ${CLUSTER_DATA}
                   export AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
                   export AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
-                  cd ${deployDir} && python3 csf_gateway.py --cluster_data ${CLUSTER_DATA} --action $TASKS
+                  cd ${deployDir} && python3 csf_gateway.py --cluster_data ${CLUSTER_DATA} --actions $TASKS
                 """
                 
                 }
