@@ -19,14 +19,14 @@ pipeline {
     parameters {
         base64File 'CLUSTER_DATA'
         string(name: "BRANCH_NAME", description: "Branch Name", defaultValue: "dev")
-        string(name: "ACTIONS", description: "Actions", defaultValue: "validate_request,provision")
+        string(name: "ACTIONS", description: "Actions", defaultValue: "provision")
     }
     // Stages in execution
     stages{
         // Set up environment
         stage ("Set up environment"){
             steps {
-                withFileparameter('CLUSTER_DATA'){
+                withFileParameter('CLUSTER_DATA'){
                 script {
                    gitClone()
                    // read json data
