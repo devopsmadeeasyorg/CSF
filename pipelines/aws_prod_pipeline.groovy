@@ -18,8 +18,8 @@ pipeline {
     // Passing parameters 
     parameters {
         string(name: "CLUSTER_DATA", description: "Cluster Data JSON")
-        string(name: "BRANCH_NAME", description: "Branch Name", defaultValue: "dev")
-        string(name: "TASKS", description: "Actions", defaultValue: "validate_request,provision")
+        string(name: "BRANCH_NAME", description: "Branch Name", defaultValue: "master")
+        string(name: "TASKS", description: "Actions", defaultValue: "provision")
     }
     // Stages in execution
     stages{
