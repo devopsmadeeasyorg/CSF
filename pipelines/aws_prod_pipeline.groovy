@@ -33,7 +33,7 @@ pipeline {
                     cat ${deployDir}/cluster_data.json
                     """
                     // read json data and update build number
-                   data = sh(script: "${deployDir}/cluster_data.json", returnStdout: true)
+                   data = sh(script: " cat ${deployDir}/cluster_data.json", returnStdout: true)
                    jsonData = new JsonSlurperClassic().parseText(data)
                    if(jsonData.containsKey('cloud_provider')){
                     currentBuild.displayName = jsonData['cloud_provider']
