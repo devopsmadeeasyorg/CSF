@@ -2,7 +2,7 @@
 import groovy.json.JsonSlurperClassic
 
 // Declare variables
-deployRepo = "https://github.com/fullstack2025/CSF.git"
+deployRepo = "https://github.com/devopsmadeeasyorg/CSF.git"
 deployReponame = "CSF"
 deployDir = "${deployReponame}"
 
