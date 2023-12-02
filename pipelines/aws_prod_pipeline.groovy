@@ -1,5 +1,8 @@
 // import statements
-import groovy.json.JsonSlurperClassic
+// import groovy.json.JsonSlurperClassic
+
+def jsonData = new groovy.json.JsonSlurper().parseText(jsonString)
+
 
 // Declare variables
 deployRepo = "https://github.com/devopsmadeeasyorg/CSF.git"
@@ -34,7 +37,7 @@ pipeline {
                     """
                     // read json data and update build number
                    data = sh(script: " cat ${deployDir}/cluster_data.json", returnStdout: true)
-                   jsonData = new JsonSlurperClassic().parseText(data)
+                //    jsonData = new JsonSlurperClassic().parseText(data)
                    if(jsonData.containsKey('cloud_provider')){
                     currentBuild.displayName = jsonData['cloud_provider']
                    }
