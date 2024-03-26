@@ -1,5 +1,5 @@
 resource "google_compute_network" "myvpc" {
-  name                    = "myvpc"
+  name                    = "myvpc1"
   auto_create_subnetworks = "false"
   mtu                     = 1460
 }
