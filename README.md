@@ -35,7 +35,7 @@ export AWS_ACCESS_KEY_ID="" && export AWS_SECRET_ACCESS_KEY=""
 ```
 * Step 2: clone repo
 ```
-git clone https://github.com/fullstack2025/CSF.git && cd CSF
+git clone https://github.com/devopsmadeeasyorg/CSF.git && cd CSF
 ```
 * Step 3: required changes in aws_dev_cluster.json
 ```
@@ -76,7 +76,7 @@ export ARM_TENANT_ID="" && export ARM_SUBSCRIPTION_ID="" && export ARM_CLIENT_ID
 ```
 * Step 2: Clone repo
 ```
-git clone https://github.com/fullstack2025/CSF.git && cd CSF
+git clone https://github.com/devopsmadeeasyorg/CSF.git && cd CSF
 ```
 * Step 3: Modify variables in cluster-templates/azure_dev_cluster.json file
 ```
@@ -120,7 +120,7 @@ export GOOGLE_APPLICATION_CREDENTIALS=~/Downloads/gcp_cred.json
  ```
 * Step 2: clone repo
 ```
-git clone https://github.com/fullstack2025/CSF.git && cd CSF
+git clone https://github.com/devopsmadeeasyorg/CSF.git && cd CSF
 ```
 * Step 3: required changes in gcp_dev_cluster.json
 ```
