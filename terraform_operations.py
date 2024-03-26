@@ -5,7 +5,7 @@ import time
 def provision_cluster(cluster_data):
     print("cluster_data", cluster_data)
     time.sleep(10)
-    pwd = os.getcwd() + f"/provider-templates/{cluster_data['cloud_provider']}"
+    pwd = os.getcwd() + f"/CSF/provider-templates/{cluster_data['cloud_provider']}"
     print("pwd", pwd)
     time.sleep(10)
     cmds = [f"terraform init",f"terraform validate",f"terraform apply -var-file ../../cluster-templates/{cluster_data['cloud_provider']}_dev_cluster.json"]
