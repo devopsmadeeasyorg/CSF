@@ -8,7 +8,7 @@ def provision_cluster(cluster_data):
     pwd = os.getcwd() + f"/CSF/provider-templates/{cluster_data['cloud_provider']}"
     print("pwd", pwd)
     time.sleep(10)
-    cmds = [f"terraform init",f"terraform validate",f"terraform apply -var-file ../../cluster-templates/{cluster_data['cloud_provider']}_dev_cluster.json"]
+    cmds = [f"terraform init",f"terraform validate",f"terraform apply -auto-approve -var-file ../../cluster-templates/{cluster_data['cloud_provider']}_dev_cluster.json"]
     for cmd in cmds:
         provision = subprocess.Popen(cmd, shell= True, cwd = pwd)
         print("cmd", cmd)
